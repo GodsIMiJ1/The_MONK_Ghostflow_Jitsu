@@ -259,8 +259,12 @@ export default function Home() {
     input.click();
   };
 
+  if (!hasMounted) {
+    return null;
+  }
+
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col min-h-screen bg-monk-charcoal text-monk-ash">
       <NavigationBar
         appName={APP_NAME}
         appVersion={APP_VERSION}
@@ -269,21 +273,28 @@ export default function Home() {
         onLoad={() => setIsLoadDialogOpen(true)}
       />
       
-      <div className="flex-1 flex">
-        {/* Sidebar */}
-        <SidebarProvider defaultOpen>
-          <Sidebar className="h-full border-r">
-            <SidebarHeader className="h-14 border-b px-4 flex items-center">
-              <h2 className="text-lg font-semibold">Documents</h2>
+      <main className="flex-1 flex">
+        <SidebarProvider>
+          {/* Sidebar */}
+          <Sidebar className="w-64 border-r border-monk-forest">
+            <SidebarHeader className="p-4">
+              <h2 className="text-xl font-semibold text-monk-gold">Documents</h2>
             </SidebarHeader>
-            <SidebarContent>
-              {/* Document list */}
-              <div className="space-y-2 p-4">
+            <SidebarContent className="p-4">
+              <div className="space-y-2">
+                <Button 
+                  onClick={handleNewDocument}
+                  className="w-full bg-monk-forest hover:bg-monk-gold text-monk-ash"
+                >
+                  New Document
+                </Button>
                 {documents.map((doc) => (
                   <Button
                     key={doc.id}
-                    variant={currentDocumentId === doc.id ? "secondary" : "ghost"}
-                    className="w-full justify-start"
+                    variant="ghost"
+                    className={`w-full justify-start ${
+                      currentDocumentId === doc.id ? 'bg-monk-forest text-monk-ash' : 'text-monk-moss hover:text-monk-gold'
+                    }`}
                     onClick={() => handleLoadDocument(doc.id)}
                   >
                     {doc.name}
@@ -291,92 +302,93 @@ export default function Home() {
                 ))}
               </div>
             </SidebarContent>
-            <SidebarFooter className="border-t p-4">
-              <Button
-                variant="outline"
-                className="w-full"
-                onClick={handleNewDocument}
-              >
-                New Document
-              </Button>
-            </SidebarFooter>
           </Sidebar>
+
+          {/* Main Content */}
+          <div className="flex-1 flex flex-col">
+            <div className="flex-1 p-4">
+              <DocumentEditor
+                initialContent={documentContent}
+                onContentChange={(content: string) => setDocumentContent(content)}
+                onSave={handleSaveDocument}
+                className="w-full h-full min-h-[500px] bg-monk-charcoal text-monk-ash border border-monk-forest rounded-lg p-4 focus:ring-2 focus:ring-monk-gold outline-none"
+              />
+            </div>
+          </div>
+
+          {/* AI Chat Window */}
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button 
+                className="fixed bottom-4 right-4 bg-monk-forest hover:bg-monk-gold text-monk-ash"
+              >
+                AI Assistant
+              </Button>
+            </SheetTrigger>
+            <SheetContent className="w-[400px] bg-monk-charcoal border-l border-monk-forest">
+              <SheetHeader>
+                <SheetTitle className="text-monk-gold">AI Assistant</SheetTitle>
+                <SheetDescription className="text-monk-moss">
+                  Get help with your documents
+                </SheetDescription>
+              </SheetHeader>
+              <AIChatWindow 
+                documentContent={documentContent}
+                onDocumentUpdate={setDocumentContent}
+              />
+            </SheetContent>
+          </Sheet>
         </SidebarProvider>
-
-        {/* Main content */}
-        <div className="flex-1 flex">
-          <DocumentEditor
-            initialContent={documentContent}
-            onContentChange={(content: string) => setDocumentContent(content)}
-            onSave={handleSaveDocument}
-          />
-        </div>
-
-        {/* AI Chat Window */}
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button
-              className="fixed bottom-4 right-4"
-              size="lg"
-            >
-              AI Assistant
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="right" className="w-[400px] sm:w-[540px]">
-            <SheetHeader>
-              <SheetTitle>AI Assistant</SheetTitle>
-              <SheetDescription>
-                Ask questions about your documents or get help with writing.
-              </SheetDescription>
-            </SheetHeader>
-            <AIChatWindow 
-              documentContent={documentContent}
-              onDocumentUpdate={setDocumentContent}
-            />
-          </SheetContent>
-        </Sheet>
-      </div>
+      </main>
 
       {/* Dialogs */}
       <Dialog open={isNamingNewDialogOpen} onOpenChange={setIsNamingNewDialogOpen}>
-        <DialogContent>
+        <DialogContent className="bg-monk-charcoal border border-monk-forest">
           <DialogHeader>
-            <DialogTitle>Name Your Document</DialogTitle>
-            <DialogDescription>
-              Give your new document a name to save it.
+            <DialogTitle className="text-monk-gold">Name Your Document</DialogTitle>
+            <DialogDescription className="text-monk-moss">
+              Give your new document a name before saving.
             </DialogDescription>
           </DialogHeader>
-          <div className="grid gap-4 py-4">
-            <div className="grid gap-2">
-              <Label htmlFor="name">Name</Label>
+          <div className="space-y-4 py-4">
+            <div className="space-y-2">
+              <Label htmlFor="name" className="text-monk-ash">
+                Document Name
+              </Label>
               <Input
                 id="name"
                 value={newDocumentName}
                 onChange={(e) => setNewDocumentName(e.target.value)}
-                placeholder="Enter document name..."
+                className="bg-monk-charcoal border-monk-forest text-monk-ash"
               />
             </div>
           </div>
           <DialogFooter>
-            <Button onClick={handleSaveDocument}>Save Document</Button>
+            <Button
+              onClick={handleSaveDocument}
+              className="bg-monk-forest hover:bg-monk-gold text-monk-ash"
+            >
+              Save Document
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
 
+      {/* Load Document Dialog */}
       <Dialog open={isLoadDialogOpen} onOpenChange={setIsLoadDialogOpen}>
-        <DialogContent>
+        <DialogContent className="bg-monk-charcoal border border-monk-forest">
           <DialogHeader>
-            <DialogTitle>Load Document</DialogTitle>
-            <DialogDescription>
+            <DialogTitle className="text-monk-gold">Load Document</DialogTitle>
+            <DialogDescription className="text-monk-moss">
               Choose a document to load.
             </DialogDescription>
           </DialogHeader>
-          <div className="grid gap-4 py-4">
+          <div className="space-y-4 py-4">
             {documents.map((doc) => (
               <Button
                 key={doc.id}
-                variant="outline"
-                className="w-full justify-start"
+                variant="ghost"
+                className={`w-full justify-start text-monk-moss hover:text-monk-gold`}
                 onClick={() => handleLoadDocument(doc.id)}
               >
                 {doc.name}

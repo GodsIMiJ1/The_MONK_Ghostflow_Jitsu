@@ -32,9 +32,10 @@ interface DocumentEditorProps {
   initialContent?: string;
   onContentChange?: (content: string) => void;
   onSave?: (content: string, name: string, format: DocumentFormat) => void;
+  className?: string;
 }
 
-export default function DocumentEditor({ initialContent = '', onContentChange, onSave }: DocumentEditorProps) {
+export default function DocumentEditor({ initialContent = '', onContentChange, onSave, className }: DocumentEditorProps) {
   const [content, setContent] = useState(initialContent);
   const [isEditing, setIsEditing] = useState(false);
   const [selectedText, setSelectedText] = useState('');
@@ -388,7 +389,7 @@ export default function DocumentEditor({ initialContent = '', onContentChange, o
   };
 
   return (
-    <div className="h-full flex flex-col bg-monk-charcoal text-monk-ash overflow-hidden" style={{ opacity }}>
+    <div className={`h-full flex flex-col bg-monk-charcoal text-monk-ash overflow-hidden ${className || ''}`} style={{ opacity }}>
       {/* Terminal Menu Bar */}
       <div className="p-2 bg-monk-charcoal border-b border-monk-forest flex items-center justify-between">
         <div className="flex items-center gap-4">

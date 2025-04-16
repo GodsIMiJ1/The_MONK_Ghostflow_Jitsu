@@ -1,116 +1,171 @@
 # Installation Guide
 
-This guide will help you set up THE MONK on your local machine.
-
 ## Prerequisites
 
-Before installing THE MONK, ensure you have the following installed:
-
-- Node.js (v18.0.0 or higher)
-- npm (v9.0.0 or higher)
+### System Requirements
+- Node.js 18.0.0 or higher
+- npm 9.0.0 or higher
 - Git
+- Modern web browser (Chrome, Firefox, Safari, Edge)
+
+### Development Environment
+- Code editor (VS Code recommended)
+- Git client
+- Terminal/Command Prompt
 
 ## Installation Steps
 
 ### 1. Clone the Repository
-
 ```bash
-git clone https://github.com/yourusername/The_MONK.git
-cd The_MONK
+git clone https://github.com/GodsIMiJ1/The_MONK_Ghostflow_Jitsu.git
+cd The_MONK_Ghostflow_Jitsu
 ```
 
 ### 2. Install Dependencies
-
 ```bash
 npm install
 ```
 
 ### 3. Environment Setup
-
 Create a `.env` file in the root directory with the following variables:
-
 ```env
-NEXT_PUBLIC_APP_NAME="THE MONK"
-NEXT_PUBLIC_APP_VERSION="1.0.0"
-LM_STUDIO_API_KEY=your_api_key_here
+NEXT_PUBLIC_APP_NAME="The MONK"
+NEXT_PUBLIC_APP_VERSION="v1.0.0"
 ```
 
-### 4. Development Mode
-
-To start the development server:
-
+### 4. Development Server
 ```bash
 npm run dev
 ```
-
 The application will be available at `http://localhost:3000`
 
-### 5. Production Build
+## Configuration
 
-To create a production build:
+### 1. Theme Settings
+- Dark theme is enabled by default
+- Theme settings can be adjusted in the UI
+- Custom themes can be created
 
+### 2. AI Configuration
+- LM Studio integration
+- Local model support
+- Custom prompt templates
+
+### 3. Storage Settings
+- Local storage configuration
+- Auto-save settings
+- Backup preferences
+
+## Development Setup
+
+### 1. VS Code Extensions
+- ESLint
+- Prettier
+- TypeScript
+- Tailwind CSS IntelliSense
+
+### 2. Recommended Settings
+```json
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "typescript.tsdk": "node_modules/typescript/lib"
+}
+```
+
+### 3. Build Process
 ```bash
+# Development build
+npm run dev
+
+# Production build
 npm run build
+
+# Start production server
 npm start
 ```
 
-## Configuration Options
-
-### AI Integration
-
-To enable AI features, you need to:
-
-1. Sign up for an LMStudio account
-2. Get your API key
-3. Add it to your `.env` file
-
-### Customization
-
-You can customize THE MONK by modifying:
-
-- `src/app/monk-theme.css` - Theme colors and styles
-- `src/components/ui/` - UI components
-- `src/lib/config.ts` - Application configuration
-
 ## Troubleshooting
 
-### Common Issues
+### 1. Common Issues
+#### Installation Errors
+- Clear npm cache: `npm cache clean --force`
+- Delete node_modules: `rm -rf node_modules`
+- Reinstall dependencies: `npm install`
 
-1. **Port Already in Use**
-   ```bash
-   # Find the process using port 3000
-   lsof -i :3000
-   # Kill the process
-   kill -9 <PID>
-   ```
+#### Development Server
+- Check port availability
+- Verify Node.js version
+- Clear browser cache
 
-2. **Dependency Installation Failed**
-   ```bash
-   # Clear npm cache
-   npm cache clean --force
-   # Remove node_modules
-   rm -rf node_modules
-   # Reinstall dependencies
-   npm install
-   ```
+### 2. AI Setup
+#### LM Studio
+- Install LM Studio
+- Configure local model
+- Set up API endpoint
 
-3. **Environment Variables Not Loading**
-   - Ensure `.env` file is in the root directory
-   - Check for typos in variable names
-   - Restart the development server
+#### Model Configuration
+- Select appropriate model
+- Configure parameters
+- Test connection
 
-### Getting Help
+## Production Deployment
 
-If you encounter issues not covered here:
+### 1. Build Optimization
+```bash
+# Create optimized build
+npm run build
 
-1. Check the [GitHub Issues](https://github.com/yourusername/The_MONK/issues)
-2. Join our [Discussions](https://github.com/yourusername/The_MONK/discussions)
-3. Create a new issue with detailed information about your problem
+# Analyze bundle size
+npm run analyze
+```
 
-## Next Steps
+### 2. Deployment Options
+- Vercel (recommended)
+- Netlify
+- Self-hosted
 
-After installation, you might want to:
+### 3. Environment Variables
+```env
+NEXT_PUBLIC_APP_NAME="The MONK"
+NEXT_PUBLIC_APP_VERSION="v1.0.0"
+NODE_ENV="production"
+```
 
-1. Read the [Quick Start Guide](quickstart.md)
-2. Explore the [User Manual](user_manual.md)
-3. Learn about [AI Features](ai_features.md) 
+## Maintenance
+
+### 1. Updates
+```bash
+# Update dependencies
+npm update
+
+# Check for outdated packages
+npm outdated
+```
+
+### 2. Security
+- Regular dependency updates
+- Security audits
+- Vulnerability scanning
+
+### 3. Backup
+- Regular data backups
+- Version control
+- Disaster recovery plan
+
+## Support
+
+### 1. Resources
+- GitHub repository
+- Documentation
+- Issue tracking
+
+### 2. Community
+- GitHub Discussions
+- Discord server
+- Stack Overflow
+
+### 3. Professional Support
+- Enterprise support
+- Custom development
+- Training services 

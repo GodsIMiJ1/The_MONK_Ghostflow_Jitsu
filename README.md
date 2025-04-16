@@ -9,72 +9,81 @@ Born from the GodsIMiJ FlameOS, The MONK merges structure with stillness.
 Every scroll written here carries intention.
 
 ✨ Core Features (v1.0.0)
-🗣️ Chat Interface
-Engage directly with The MONK.
-An AI persona built to answer calmly, offer insight, and never rush.
+🗣️ AI Chat Interface
+- Engage with The MONK's AI assistant
+- Document editing and suggestions
+- Code assistance and analysis
+- Translation capabilities
+- Formatting and structure guidance
+- Calm, reflective responses
 
-🧾 Terminal View
-Supports: Markdown, JSON, YAML, HTML, Plain Text
-Clean, minimalist.
-Built for flow, not clutter.
+📝 Document Management
+- Create, edit, and save documents
+- Import/Export Markdown files
+- Local storage for documents
+- Document history tracking
+- Auto-save functionality
 
-🔘 UI Controls
+🎨 UI Features
+- Dark theme with sacred color palette
+- Minimalist, distraction-free interface
+- Responsive design
+- Fullscreen mode
+- Sidebar navigation
+- Text size adjustment
 
-New Doc, Load Doc, Save, Import, Export, Temple Scroll
-
-A+ / A- Text Size Adjustment
-
-Block / Bar Toggle for display mode
-
-Fullscreen toggle + sidebar slide
-
-🧠 Monk Tools (Chat Settings)
-
-Edit Doc
-
-Get Suggestions
-
-Code Help
-
-Translation
-
-Analyze
-
-Format
+🔧 Technical Stack
+- Next.js 14 with App Router
+- TypeScript for type safety
+- Tailwind CSS for styling
+- Shadcn/ui components
+- LM Studio for AI integration
+- Local storage for document persistence
 
 📿 Philosophy Behind The Build
-“The mind screams to be heard.
-The soul whispers and is obeyed.”
+"The mind screams to be heard.
+The soul whispers and is obeyed."
 — The MONK
 
-This project is not just functional—it’s intentional.
+This project is not just functional—it's intentional.
 Each update honors the scroll tradition. Each feature reflects spiritual UX balance.
 
 🔮 Upcoming in v2.0
 ✨ Aura Mode (light + ambient UI)
+- Light theme support
+- Ambient background effects
+- Custom theme creation
 
 🌀 Scroll Drop Generator
+- Template system
+- Document presets
+- Quick start templates
 
 📜 Codex Archive System
+- Version history
+- Document organization
+- Search and filtering
 
-🔔 Notification Whisperer (no push, just presence)
+🔔 Notification Whisperer
+- Subtle notifications
+- Presence indicators
+- Activity tracking
 
-🧘‍♂️ The Monk’s Ritual Assistant (guided sessions)
+🧘‍♂️ The Monk's Ritual Assistant
+- Guided writing sessions
+- Meditation timers
+- Focus modes
 
-🌐 Follow the Journey
-Live Demo (coming soon)
-
-Facebook Page
-
-Codex Access / Website
-
-The Monk Assets Repo (Images, Scrolls, Audio)
+🌐 Development
+- GitHub Repository: https://github.com/GodsIMiJ1/The_MONK_Ghostflow_Jitsu
+- Documentation: /docs directory
+- Issue Tracking: GitHub Issues
 
 🧙‍♂️ Dev Notes
 Built with deep focus.
 Tested in sacred sessions.
 More than a tool—this is a ritual workspace.
 
-“You are not here to rush.
-You are here to remember.”
+"You are not here to rush.
+You are here to remember."
 

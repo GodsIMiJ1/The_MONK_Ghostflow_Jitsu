@@ -1,176 +1,188 @@
-# User Manual
+# The MONK User Manual
 
-Welcome to THE MONK user manual. This guide will help you understand and use all features of THE MONK effectively.
-
-## Table of Contents
-1. [Getting Started](#getting-started)
-2. [Interface Overview](#interface-overview)
-3. [Document Management](#document-management)
-4. [AI Features](#ai-features)
-5. [Customization](#customization)
-6. [Tips and Tricks](#tips-and-tricks)
+## Introduction
+Welcome to The MONK, a sacred text editor designed for presence and focus. This manual will guide you through the features and capabilities of this unique writing environment.
 
 ## Getting Started
 
-### First Launch
-When you first launch THE MONK, you'll see:
-- A welcome scroll explaining the basics
-- The main editor interface
-- The AI chat window
-- File management controls
+### 1. First Launch
+- The MONK opens with a welcome scroll
+- Dark theme is enabled by default
+- AI assistant is ready to help
 
-### Basic Navigation
-- Use the sidebar for document management
-- The center area is your main editing space
-- The right panel contains AI features
-- Bottom panel shows the mind map view
+### 2. Basic Navigation
+- Left sidebar for document management
+- Main editor area for content
+- AI chat window for assistance
+- Top navigation bar for controls
 
-## Interface Overview
+## Core Features
 
-### Main Components
+### 1. Document Management
+#### Creating Documents
+- Click "New Document" in the sidebar
+- Enter a name for your document
+- Start writing immediately
 
-#### 1. Document Editor
-- Rich text editing with syntax highlighting
-- Multiple format support
-- Line numbers
-- Format validation
+#### Saving Documents
+- Documents auto-save locally
+- Manual save available via "Save" button
+- Export to Markdown format
 
-#### 2. AI Chat Window
-- Interactive chat interface
-- Document analysis
-- Code assistance
-- Translation capabilities
+#### Loading Documents
+- Access recent documents in sidebar
+- Click to load any saved document
+- Import external Markdown files
 
-#### 3. File Management
-- Create new documents
-- Load existing documents
-- Save changes
-- Import/export files
+### 2. AI Assistance
+#### Chat Interface
+- Type questions in the chat window
+- Receive calm, reflective responses
+- Context-aware assistance
 
-### Toolbar Functions
+#### Document Editing
+- Request edits to your document
+- Get style suggestions
+- Receive formatting help
 
-#### Document Controls
-- New Document
-- Load Document
-- Save
-- Import
-- Export
-- Temple Scroll
+#### Code Assistance
+- Syntax help
+- Implementation guidance
+- Debugging support
 
-#### Display Controls
-- Text Size (A+ / A-)
-- Display Mode (Block / Bar)
-- Fullscreen Toggle
-- Sidebar Slide
+#### Translation
+- Language detection
+- Context-aware translation
+- Technical accuracy
 
-## Document Management
+### 3. UI Features
+#### Theme
+- Dark theme by default
+- Sacred color palette
+- Minimalist interface
 
-### Creating Documents
-1. Click "New Document" or use `Ctrl+N`
-2. Choose a format (Markdown, JSON, YAML, HTML)
-3. Start writing
+#### Layout
+- Fullscreen mode
+- Sidebar toggle
+- Text size adjustment
 
-### Saving Documents
-1. Click "Save" or use `Ctrl+S`
-2. Choose a location
-3. Select format
-4. Confirm save
+#### Navigation
+- Document history
+- Quick access menu
+- Search functionality
 
-### Importing Documents
-1. Click "Import"
-2. Select file
-3. Choose import options
-4. Confirm import
+## Advanced Features
 
-### Exporting Documents
-1. Click "Export"
-2. Choose format
-3. Select location
-4. Confirm export
+### 1. Document Operations
+#### Import/Export
+- Import Markdown files
+- Export to various formats
+- Batch operations
 
-## AI Features
+#### Version Control
+- Document history
+- Version comparison
+- Restore points
 
-### Chat Interface
-- Ask questions about your document
-- Get writing suggestions
-- Request code help
-- Get translations
+### 2. AI Capabilities
+#### Analysis
+- Content structure
+- Style assessment
+- Readability metrics
 
-### Document Analysis
-- Structure suggestions
-- Content improvements
-- Style recommendations
-- Format optimization
+#### Formatting
+- Markdown formatting
+- Code block handling
+- List organization
 
-### Code Assistance
-- Syntax checking
-- Code suggestions
-- Debugging help
-- Best practices
+### 3. Customization
+#### Settings
+- Theme preferences
+- Auto-save interval
+- AI response style
 
-## Customization
+#### Shortcuts
+- Keyboard shortcuts
+- Quick commands
+- Custom bindings
 
-### Theme Settings
-- Light/Dark mode
-- Custom colors
-- Font size
-- Cursor style
+## Best Practices
 
-### Editor Settings
-- Line numbers
-- Word wrap
-- Tab size
-- Auto-save
+### 1. Writing Flow
+- Use the distraction-free interface
+- Leverage AI for suggestions
+- Maintain focus with dark theme
 
-### AI Settings
-- Response style
-- Language preferences
-- Code formatting
-- Analysis depth
+### 2. Document Organization
+- Use clear document names
+- Organize by project
+- Regular backups
 
-## Tips and Tricks
-
-### Productivity Tips
-1. Use keyboard shortcuts
-2. Enable auto-save
-3. Use AI suggestions
-4. Customize your workspace
-
-### Writing Tips
-1. Start with an outline
-2. Use AI for refinement
-3. Check formatting
-4. Save frequently
-
-### Code Tips
-1. Use syntax highlighting
-2. Enable linting
-3. Use AI code review
-4. Format code regularly
+### 3. AI Interaction
+- Be specific in requests
+- Use appropriate message types
+- Review suggestions carefully
 
 ## Troubleshooting
 
-### Common Issues
+### 1. Common Issues
+#### Document Loading
+- Check local storage
+- Verify file format
+- Clear cache if needed
 
-#### Document Issues
-- **File not saving**: Check permissions
-- **Format errors**: Validate content
-- **Import failures**: Check file format
+#### AI Responses
+- Check internet connection
+- Verify model status
+- Try different prompts
 
-#### AI Issues
-- **No response**: Check connection
-- **Slow responses**: Reduce content size
-- **Incorrect suggestions**: Provide more context
+### 2. Performance
+- Clear document history
+- Optimize large documents
+- Check system resources
 
-#### Interface Issues
-- **UI glitches**: Refresh page
-- **Slow performance**: Clear cache
-- **Missing features**: Check version
+## Keyboard Shortcuts
+
+### 1. Document Operations
+- `Ctrl + N`: New document
+- `Ctrl + S`: Save document
+- `Ctrl + O`: Open document
+- `Ctrl + E`: Export document
+
+### 2. Editor Controls
+- `Ctrl + +`: Increase text size
+- `Ctrl + -`: Decrease text size
+- `F11`: Toggle fullscreen
+- `Ctrl + B`: Toggle sidebar
+
+### 3. AI Interaction
+- `Ctrl + Space`: Focus chat
+- `Ctrl + Enter`: Send message
+- `Esc`: Close AI window
 
 ## Support
 
-For additional help:
-1. Check the [FAQ](faq.md)
-2. Visit our [GitHub](https://github.com/yourusername/The_MONK)
-3. Join our [Discussions](https://github.com/yourusername/The_MONK/discussions)
-4. Create an [Issue](https://github.com/yourusername/The_MONK/issues) 
+### 1. Resources
+- GitHub repository
+- Documentation
+- Issue tracking
+
+### 2. Contact
+- GitHub issues
+- Email support
+- Community forum
+
+## Version History
+
+### v1.0.0
+- Initial release
+- Core document management
+- AI integration
+- Dark theme
+- Local storage
+
+### Upcoming Features
+- Light theme
+- Cloud storage
+- Advanced AI
+- Plugin system 

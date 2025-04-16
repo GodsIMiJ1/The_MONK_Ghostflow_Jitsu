@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="200" cy="150" r="100" stroke="#00C853" stroke-width="4"/>
+  <path d="M200 300C177.909 300 160 282.091 160 260C160 237.909 177.909 220 200 220C222.091 220 240 237.909 240 260C240 282.091 222.091 300 200 300Z" stroke="#00C853" stroke-width="4"/>
+  <path d="M160 260C160 260 180 280 200 280C220 280 240 260 240 260" stroke="#00C853" stroke-width="4"/>
+  <path d="M200 220V200" stroke="#00C853" stroke-width="4"/>
+  <path d="M180 150H220" stroke="#00C853" stroke-width="4" stroke-dasharray="10 10"/>
+  <path d="M150 100C150 100 170 120 200 120C230 120 250 100 250 100" stroke="#00C853" stroke-width="4"/>
+  <path d="M150 100C150 100 170 80 200 80C230 80 250 100 250 100" stroke="#00C853" stroke-width="4"/>
+  <path d="M120 180C120 180 150 150 150 100" stroke="#00C853" stroke-width="4"/>
+  <path d="M280 180C280 180 250 150 250 100" stroke="#00C853" stroke-width="4"/>
+  <path d="M120 180C120 180 140 220 160 220" stroke="#00C853" stroke-width="4"/>
+  <path d="M280 180C280 180 260 220 240 220" stroke="#00C853" stroke-width="4"/>
+  <text x="200" y="350" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#00C853" text-anchor="middle">The Monk</text>
+</svg>

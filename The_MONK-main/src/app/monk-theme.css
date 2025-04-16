@@ -1,0 +1,130 @@
+/* Temple Silence Color Palette */
+:root {
+  --charcoal-grey: #1B1B1B;    /* Background Base - Deep meditation stone, shadow of the hall */
+  --forest-green: #1C4D3E;     /* Primary Accent - Ritual breath, sacred robes, peace of growth */
+  --moss-sage: #7D9772;        /* Subtle Text / Icons - Calm detail lines, balanced nature */
+  --ash-white: #D8D5C7;        /* Soft Highlight / Inverse Text - Gentle stroke on contrast; worn scroll color */
+  --light-brown: #A68C6D;      /* Highlight + Buttons - Candlelight warmth, sanded temple wood */
+  --faded-gold: #D4AF7F;       /* Sacred Action / Hover - Wisdom spark, divine interaction */
+  --smokey-purple: #514B56;    /* Optional Shadow Layer - Ethereal fog, monk's breath in cold air */
+}
+
+/* Apply the Temple Silence theme to the application */
+body {
+  background-color: var(--charcoal-grey);
+  color: var(--ash-white);
+}
+
+/* Button styling */
+.monk-button {
+  background-color: var(--forest-green);
+  color: var(--ash-white);
+  border: 1px solid var(--light-brown);
+}
+
+.monk-button:hover {
+  background-color: var(--faded-gold);
+  color: var(--charcoal-grey);
+}
+
+/* Header styling */
+.monk-header {
+  background-color: var(--charcoal-grey);
+  border-bottom: 1px solid var(--forest-green);
+}
+
+/* Accent elements */
+.monk-accent {
+  color: var(--moss-sage);
+}
+
+/* Code blocks */
+.monk-code {
+  background-color: var(--smokey-purple);
+  color: var(--ash-white);
+  border: 1px solid var(--moss-sage);
+}
+
+/* Links */
+.monk-link {
+  color: var(--forest-green);
+  text-decoration: none;
+}
+
+.monk-link:hover {
+  color: var(--faded-gold);
+  text-shadow: 0 0 5px rgba(28, 77, 62, 0.3);
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--charcoal-grey);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--forest-green);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--light-brown);
+}
+
+/* Dialog/Modal styling */
+.monk-dialog {
+  background-color: var(--charcoal-grey);
+  border: 1px solid var(--forest-green);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.monk-dialog-header {
+  border-bottom: 1px solid var(--forest-green);
+}
+
+/* Input fields */
+.monk-input {
+  background-color: var(--charcoal-grey);
+  border: 1px solid var(--moss-sage);
+  color: var(--ash-white);
+}
+
+.monk-input:focus {
+  border-color: var(--faded-gold);
+  box-shadow: 0 0 0 2px rgba(212, 175, 127, 0.2);
+}
+
+/* Highlight text */
+.monk-highlight {
+  color: var(--faded-gold);
+}
+
+/* Card styling */
+.monk-card {
+  background-color: var(--charcoal-grey);
+  border: 1px solid var(--forest-green);
+}
+
+/* Ritual UI moments - subtle animations */
+@keyframes monk-breathe {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+.monk-breathe {
+  animation: monk-breathe 4s infinite ease-in-out;
+}
+
+/* Candlelight glow effect */
+.monk-glow {
+  box-shadow: 0 0 15px rgba(166, 140, 109, 0.3);
+  transition: box-shadow 0.3s ease;
+}
+
+.monk-glow:hover {
+  box-shadow: 0 0 20px rgba(212, 175, 127, 0.5);
+}

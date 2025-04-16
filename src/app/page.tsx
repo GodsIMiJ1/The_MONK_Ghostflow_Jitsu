@@ -26,6 +26,7 @@ import AIChatWindow from "@/components/ai-chat-window";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { getDocumentsFromStorage, saveDocumentToStorage, deleteDocumentFromStorage, Document } from "@/lib/storage";
 import DocumentEditor from '@/components/document-editor';
+import { NavigationBar } from "@/components/NavigationBar";
 
 const APP_VERSION = "v1.0";
 const APP_NAME = "GodsIMiJ Empire";
@@ -259,124 +260,131 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-monk-charcoal text-monk-ash">
-      <div className="h-screen flex flex-col">
-        {/* Terminal-like header bar */}
-        <div className="bg-monk-charcoal border-b border-monk-forest p-2 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="flex items-center gap-1">
-              <div className="w-3 h-3 rounded-full bg-red-500" />
-              <div className="w-3 h-3 rounded-full bg-yellow-500" />
-              <div className="w-3 h-3 rounded-full bg-green-500" />
-            </div>
-            <span className="text-sm font-mono">The Temple Dojo</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <button className="text-gray-400 hover:text-gray-200">_</button>
-            <button className="text-gray-400 hover:text-gray-200">□</button>
-            <button className="text-gray-400 hover:text-gray-200">×</button>
-          </div>
-        </div>
-
-        {/* Action buttons */}
-        <div className="bg-monk-charcoal border-b border-monk-forest p-2 flex items-center justify-center gap-4">
-          <Button onClick={handleNewDocument} variant="outline" size="sm" className="bg-monk-charcoal border-monk-moss text-monk-ash hover:bg-monk-forest hover:text-monk-ash">
-            New Document
-          </Button>
-          <Button onClick={() => setIsLoadDialogOpen(true)} variant="outline" size="sm" className="bg-monk-charcoal border-monk-moss text-monk-ash hover:bg-monk-forest hover:text-monk-ash">
-            Load Document
-          </Button>
-          <Button onClick={handleSaveDocument} variant="outline" size="sm" className="bg-monk-charcoal border-monk-moss text-monk-ash hover:bg-monk-forest hover:text-monk-ash">
-            Save Document
-          </Button>
-          <Button onClick={handleImportDocument} variant="outline" size="sm" className="bg-monk-charcoal border-monk-moss text-monk-ash hover:bg-monk-forest hover:text-monk-ash">
-            Import
-          </Button>
-          <Button onClick={handleExportDocument} variant="outline" size="sm" className="bg-monk-charcoal border-monk-moss text-monk-ash hover:bg-monk-forest hover:text-monk-ash">
-            Export
-          </Button>
-          <Button onClick={loadWelcomeScroll} variant="outline" size="sm" className="ml-2 bg-monk-forest/20 hover:bg-monk-gold/30 border-monk-gold/50 text-monk-gold hover:text-monk-charcoal monk-glow">
-            🕯️ Temple Scroll
-          </Button>
-        </div>
-
-        {/* Main content area */}
-        <div className="flex-1 flex">
-          {/* Document editor takes up most of the space */}
-          <div className="flex-1 h-full">
-            <DocumentEditor
-              initialContent={documentContent}
-              onContentChange={setDocumentContent}
-            />
-          </div>
-
-          {/* The Monk chat takes up a smaller portion */}
-          <div className="w-[400px] border-l border-monk-forest h-full">
-            <AIChatWindow documentContent={documentContent} />
-          </div>
-        </div>
-
-        {/* Load document dialog */}
-        <Dialog open={isLoadDialogOpen} onOpenChange={setIsLoadDialogOpen}>
-          <DialogContent className="bg-monk-charcoal border-monk-forest">
-            <DialogHeader>
-              <DialogTitle className="text-monk-gold">Load Document</DialogTitle>
-              <DialogDescription className="text-monk-moss">
-                Select a document to load from your local storage.
-              </DialogDescription>
-            </DialogHeader>
-            <div className="grid gap-4 py-4">
-              {documents.length > 0 ? (
-                documents.map((doc) => (
+    <div className="flex flex-col h-screen">
+      <NavigationBar
+        appName={APP_NAME}
+        appVersion={APP_VERSION}
+        onNew={handleNewDocument}
+        onSave={handleSaveDocument}
+        onLoad={() => setIsLoadDialogOpen(true)}
+      />
+      
+      <div className="flex-1 flex">
+        {/* Sidebar */}
+        <SidebarProvider defaultOpen>
+          <Sidebar className="h-full border-r">
+            <SidebarHeader className="h-14 border-b px-4 flex items-center">
+              <h2 className="text-lg font-semibold">Documents</h2>
+            </SidebarHeader>
+            <SidebarContent>
+              {/* Document list */}
+              <div className="space-y-2 p-4">
+                {documents.map((doc) => (
                   <Button
                     key={doc.id}
-                    variant="outline"
-                    className="justify-start bg-monk-charcoal border-monk-moss text-monk-ash hover:bg-monk-forest hover:text-monk-ash"
+                    variant={currentDocumentId === doc.id ? "secondary" : "ghost"}
+                    className="w-full justify-start"
                     onClick={() => handleLoadDocument(doc.id)}
                   >
                     {doc.name}
                   </Button>
-                ))
-              ) : (
-                <p className="text-center text-monk-moss">No documents found</p>
-              )}
-            </div>
-          </DialogContent>
-        </Dialog>
-
-        {/* New document dialog */}
-        <Dialog open={isNamingNewDialogOpen} onOpenChange={setIsNamingNewDialogOpen}>
-          <DialogContent className="bg-monk-charcoal border-monk-forest">
-            <DialogHeader>
-              <DialogTitle className="text-monk-gold">Name Your Document</DialogTitle>
-              <DialogDescription className="text-monk-moss">
-                Enter a name for your new document.
-              </DialogDescription>
-            </DialogHeader>
-            <div className="grid gap-4 py-4">
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="name" className="text-right text-monk-ash">
-                  Name
-                </Label>
-                <Input
-                  id="name"
-                  value={newDocumentName}
-                  onChange={(e) => setNewDocumentName(e.target.value)}
-                  className="col-span-3 bg-monk-charcoal border-monk-moss text-monk-ash"
-                />
+                ))}
               </div>
-            </div>
-            <DialogFooter>
-              <Button onClick={handleSaveDocument} className="bg-monk-forest text-monk-ash hover:bg-monk-gold hover:text-monk-charcoal">Save</Button>
-            </DialogFooter>
-          </DialogContent>
-        </Dialog>
+            </SidebarContent>
+            <SidebarFooter className="border-t p-4">
+              <Button
+                variant="outline"
+                className="w-full"
+                onClick={handleNewDocument}
+              >
+                New Document
+              </Button>
+            </SidebarFooter>
+          </Sidebar>
+        </SidebarProvider>
 
-        {/* Footer with version */}
-        <div className="bg-monk-charcoal border-t border-monk-forest p-2 text-center text-xs text-monk-moss">
-          GodsIMiJ AI Solutions 2025
+        {/* Main content */}
+        <div className="flex-1 flex">
+          <DocumentEditor
+            initialContent={documentContent}
+            onContentChange={(content: string) => setDocumentContent(content)}
+            onSave={handleSaveDocument}
+          />
         </div>
+
+        {/* AI Chat Window */}
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button
+              className="fixed bottom-4 right-4"
+              size="lg"
+            >
+              AI Assistant
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="right" className="w-[400px] sm:w-[540px]">
+            <SheetHeader>
+              <SheetTitle>AI Assistant</SheetTitle>
+              <SheetDescription>
+                Ask questions about your documents or get help with writing.
+              </SheetDescription>
+            </SheetHeader>
+            <AIChatWindow 
+              documentContent={documentContent}
+              onDocumentUpdate={setDocumentContent}
+            />
+          </SheetContent>
+        </Sheet>
       </div>
-    </main>
+
+      {/* Dialogs */}
+      <Dialog open={isNamingNewDialogOpen} onOpenChange={setIsNamingNewDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Name Your Document</DialogTitle>
+            <DialogDescription>
+              Give your new document a name to save it.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid gap-4 py-4">
+            <div className="grid gap-2">
+              <Label htmlFor="name">Name</Label>
+              <Input
+                id="name"
+                value={newDocumentName}
+                onChange={(e) => setNewDocumentName(e.target.value)}
+                placeholder="Enter document name..."
+              />
+            </div>
+          </div>
+          <DialogFooter>
+            <Button onClick={handleSaveDocument}>Save Document</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={isLoadDialogOpen} onOpenChange={setIsLoadDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Load Document</DialogTitle>
+            <DialogDescription>
+              Choose a document to load.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid gap-4 py-4">
+            {documents.map((doc) => (
+              <Button
+                key={doc.id}
+                variant="outline"
+                className="w-full justify-start"
+                onClick={() => handleLoadDocument(doc.id)}
+              >
+                {doc.name}
+              </Button>
+            ))}
+          </div>
+        </DialogContent>
+      </Dialog>
+    </div>
   );
 }

@@ -1,7 +1,9 @@
 import type {Metadata} from 'next';
 import {Geist, Geist_Mono} from 'next/font/google';
 import './globals.css';
+import './monk-theme.css';
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { ThemeProvider } from '@/lib/theme-provider';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -34,11 +36,13 @@ export default function RootLayout({
         <link rel="alternate icon" href="/favicon.ico" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <TooltipProvider delayDuration={0}>
-          <div className="min-h-screen bg-[#1a1a1a] text-gray-200">
-            {children}
-          </div>
-        </TooltipProvider>
+        <ThemeProvider>
+          <TooltipProvider delayDuration={0}>
+            <div className="min-h-screen">
+              {children}
+            </div>
+          </TooltipProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

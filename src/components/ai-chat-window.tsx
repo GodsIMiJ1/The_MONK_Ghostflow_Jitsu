@@ -213,7 +213,7 @@ export default function AIChatWindow({ documentContent, onDocumentUpdate, onSave
         <div className="flex gap-2">
           <Input
             type="text"
-            placeholder="Ask The Monk about your document..."
+            placeholder="Present your contemplation to the enlightened one..."
             value={newMessage}
             onChange={e => setNewMessage(e.target.value)}
             onKeyDown={e => {

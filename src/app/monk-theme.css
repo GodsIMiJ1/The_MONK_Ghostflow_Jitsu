@@ -1,217 +1,297 @@
-/* Base theme variables */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  --background-color: #ffffff;
-  --text-color: #333333;
-  --heading-color: #000000;
-  --accent-color: #0066cc;
-  --border-color: #e0e0e0;
-  --input-background: #f5f5f5;
+  /* Base Theme Colors */
+  --monk-zen-black: #0F0F0F;
+  --monk-bamboo-jade: #1D5C49;
+  --monk-saffron-robe: #D89C5E;
+  --monk-halo-emerald: #00FF99;
+  --monk-temple-stone: #1B1F23;
+  --monk-scroll-parchment: #E3D6B5;
+  --monk-spirit-whisper: #8EFFD7;
+  --monk-sacred-teal: #2EC8A6;
 }
 
-/* Dark theme */
-[data-theme="dark"] {
-  --background-color: #1e1e1e;
-  --text-color: #ffffff;
-  --heading-color: #ffffff;
-  --accent-color: #4a9eff;
-  --border-color: #333333;
-  --input-background: #2d2d2d;
-}
-
-/* GhostFlow Jitsu theme */
-[data-theme="ghostflow-jitsu"] {
-  --background-color: #0d0d0d;
-  --text-color: #dcdcdc;
-  --heading-color: #ffffff;
-  --accent-color: #00f7ff;
-  --secondary-accent: #ff00f7;
-  --border-color: rgba(0, 247, 255, 0.2);
-  --hover-outline: rgba(255, 0, 247, 0.4);
-  --input-background: #1a1a1a;
-  --input-border: #2c2c2c;
-  --cursor-style: 2px solid var(--accent-color);
-  --danger-color: #ff0044;
-  --danger-color-hover: #ff3366;
-  --warning-background: rgba(0, 247, 255, 0.2);
-  --button-background: #1a1a1a;
-}
-
-/* Apply theme to body */
+/* Base styles */
 body {
-  background-color: var(--background-color);
-  color: var(--text-color);
+  background-color: var(--monk-zen-black);
+  color: var(--monk-scroll-parchment);
 }
 
-/* GhostFlow Jitsu specific styles */
-[data-theme="ghostflow-jitsu"] body {
-  background-image: 
-    linear-gradient(45deg, rgba(0, 247, 255, 0.05) 25%, transparent 25%),
-    linear-gradient(-45deg, rgba(0, 247, 255, 0.05) 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, rgba(0, 247, 255, 0.05) 75%),
-    linear-gradient(-45deg, transparent 75%, rgba(0, 247, 255, 0.05) 75%);
-  background-size: 20px 20px;
-  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
-  animation: static 0.5s infinite;
+/* Editor and content area */
+.editor-area {
+  background-color: var(--monk-temple-stone);
+  min-height: 100vh;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
 }
 
-[data-theme="ghostflow-jitsu"] h1,
-[data-theme="ghostflow-jitsu"] h2,
-[data-theme="ghostflow-jitsu"] h3 {
-  color: var(--accent-color);
-  text-shadow: 0 0 10px var(--accent-color);
+/* Navigation and Sidebar */
+.sidebar {
+  background-color: var(--monk-zen-black);
+  border-right: 1px solid var(--monk-bamboo-jade);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-/* Animations */
-@keyframes static {
-  0% { background-position: 0 0, 0 10px, 10px -10px, -10px 0px; }
-  100% { background-position: 20px 0, 20px 10px, 30px -10px, 10px 0px; }
-}
-
-@keyframes flicker {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.8; }
-}
-
-@keyframes kataPulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.02); }
-  100% { transform: scale(1); }
-}
-
-/* NODE stamp */
-[data-theme="ghostflow-jitsu"] body::after {
-  content: "NODE";
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 24px;
-  color: var(--accent-color);
-  text-shadow: 0 0 10px var(--accent-color);
-  transform: rotate(-15deg);
-  opacity: 0.7;
-  pointer-events: none;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0% { opacity: 0.7; }
-  50% { opacity: 1; }
-  100% { opacity: 0.7; }
-}
-
-/* Temple Silence Color Palette */
-:root {
-  --charcoal-grey: #1B1B1B;    /* Background Base - Deep meditation stone, shadow of the hall */
-  --forest-green: #1C4D3E;     /* Primary Accent - Ritual breath, sacred robes, peace of growth */
-  --moss-sage: #7D9772;        /* Subtle Text / Icons - Calm detail lines, balanced nature */
-  --ash-white: #D8D5C7;        /* Soft Highlight / Inverse Text - Gentle stroke on contrast; worn scroll color */
-  --light-brown: #A68C6D;      /* Highlight + Buttons - Candlelight warmth, sanded temple wood */
-  --faded-gold: #D4AF7F;       /* Sacred Action / Hover - Wisdom spark, divine interaction */
-  --smokey-purple: #514B56;    /* Optional Shadow Layer - Ethereal fog, monk's breath in cold air */
-}
-
-/* Apply the Temple Silence theme to the application */
-body {
-  background-color: var(--charcoal-grey);
-  color: var(--ash-white);
-}
-
-/* Button styling */
-.monk-button {
-  background-color: var(--forest-green);
-  color: var(--ash-white);
-  border: 1px solid var(--light-brown);
-}
-
-.monk-button:hover {
-  background-color: var(--faded-gold);
-  color: var(--charcoal-grey);
-}
-
-/* Header styling */
-.monk-header {
-  background-color: var(--charcoal-grey);
-  border-bottom: 1px solid var(--forest-green);
-}
-
-/* Accent elements */
-.monk-accent {
-  color: var(--moss-sage);
-}
-
-/* Code blocks */
-.monk-code {
-  background-color: var(--smokey-purple);
-  color: var(--ash-white);
-  border: 1px solid var(--moss-sage);
-}
-
-/* Links */
-.monk-link {
-  color: var(--forest-green);
+.sidebar-item,
+.nav-item {
+  padding: 0.75rem 1rem;
+  border-radius: 0.375rem;
+  color: var(--monk-scroll-parchment);
+  background-color: var(--monk-temple-stone);
+  border: 1px solid var(--monk-bamboo-jade);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   text-decoration: none;
 }
 
-.monk-link:hover {
-  color: var(--faded-gold);
-  text-shadow: 0 0 5px rgba(28, 77, 62, 0.3);
+.sidebar-item:hover,
+.nav-item:hover {
+  background-color: var(--monk-bamboo-jade);
+  border-color: var(--monk-sacred-teal);
+  box-shadow: 0 0 10px rgba(0, 255, 153, 0.2);
+  transform: translateX(2px);
 }
 
-/* Scrollbars */
+/* Buttons and Interactive Elements */
+.btn,
+.btn-primary,
+.btn-secondary,
+button {
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  min-width: 2.75rem;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid transparent;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.875rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.btn,
+.btn-primary {
+  background: linear-gradient(135deg, var(--monk-sacred-teal) 0%, var(--monk-bamboo-jade) 100%);
+  color: var(--monk-zen-black);
+  border: 2px solid var(--monk-sacred-teal);
+}
+
+.btn:hover,
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--monk-halo-emerald) 0%, var(--monk-sacred-teal) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(0, 255, 153, 0.2);
+  border-color: var(--monk-halo-emerald);
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, var(--monk-temple-stone) 0%, var(--monk-bamboo-jade) 100%);
+  color: var(--monk-spirit-whisper);
+  border: 2px solid var(--monk-bamboo-jade);
+}
+
+.btn-secondary:hover {
+  background: linear-gradient(135deg, var(--monk-bamboo-jade) 0%, var(--monk-temple-stone) 100%);
+  border-color: var(--monk-sacred-teal);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(46, 200, 166, 0.2);
+}
+
+.btn:active,
+.btn-primary:active,
+.btn-secondary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Button sizes */
+.btn-sm {
+  padding: 0.5rem 1rem;
+  min-height: 2.25rem;
+  min-width: 2.25rem;
+  font-size: 0.75rem;
+}
+
+.btn-lg {
+  padding: 1rem 1.75rem;
+  min-height: 3.25rem;
+  min-width: 3.25rem;
+  font-size: 1rem;
+}
+
+/* Icon button */
+.btn-icon {
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  aspect-ratio: 1;
+}
+
+/* Button with icon */
+.btn-with-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-with-icon svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Ghost button */
+.btn-ghost {
+  background: transparent;
+  color: var(--monk-spirit-whisper);
+  border: 2px solid var(--monk-bamboo-jade);
+}
+
+.btn-ghost:hover {
+  background: rgba(46, 200, 166, 0.1);
+  border-color: var(--monk-sacred-teal);
+  color: var(--monk-sacred-teal);
+  transform: translateY(-2px);
+}
+
+/* Disabled state */
+.btn:disabled,
+.btn-primary:disabled,
+.btn-secondary:disabled,
+.btn-ghost:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Loading state */
+.btn-loading {
+  position: relative;
+  color: transparent !important;
+}
+
+.btn-loading::after {
+  content: '';
+  position: absolute;
+  width: 1rem;
+  height: 1rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid var(--monk-spirit-whisper);
+  border-radius: 50%;
+  border-right-color: transparent;
+  animation: spin 0.75s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Headers */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--monk-sacred-teal);
+}
+
+/* Input Fields */
+input, textarea, select {
+  background-color: var(--monk-temple-stone);
+  border: 1px solid var(--monk-bamboo-jade);
+  color: var(--monk-scroll-parchment);
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: var(--monk-sacred-teal);
+  box-shadow: 0 0 0 2px rgba(0, 255, 153, 0.2);
+}
+
+/* AI messages */
+.ai-message {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background: linear-gradient(
+    135deg,
+    var(--monk-temple-stone) 0%,
+    var(--monk-zen-black) 100%
+  );
+  border: 1px solid var(--monk-spirit-whisper);
+  color: var(--monk-spirit-whisper);
+  margin: 0.5rem 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.ai-message::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--monk-spirit-whisper),
+    transparent
+  );
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Cards and Containers */
+.card {
+  background-color: var(--monk-temple-stone);
+  border: 1px solid var(--monk-bamboo-jade);
+}
+
+/* Scrollbar Styling */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--charcoal-grey);
+  background: var(--monk-zen-black);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--forest-green);
+  background: var(--monk-bamboo-jade);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--light-brown);
+  background: var(--monk-sacred-teal);
 }
 
-/* Dialog/Modal styling */
-.monk-dialog {
-  background-color: var(--charcoal-grey);
-  border: 1px solid var(--forest-green);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+/* Animations */
+@keyframes pulse {
+  0% { border-color: rgba(142, 255, 215, 0.2); }
+  50% { border-color: rgba(142, 255, 215, 0.8); }
+  100% { border-color: rgba(142, 255, 215, 0.2); }
 }
 
-.monk-dialog-header {
-  border-bottom: 1px solid var(--forest-green);
-}
-
-/* Input fields */
-.monk-input {
-  background-color: var(--charcoal-grey);
-  border: 1px solid var(--moss-sage);
-  color: var(--ash-white);
-}
-
-.monk-input:focus {
-  border-color: var(--faded-gold);
-  box-shadow: 0 0 0 2px rgba(212, 175, 127, 0.2);
-}
-
-/* Highlight text */
-.monk-highlight {
-  color: var(--faded-gold);
-}
-
-/* Card styling */
-.monk-card {
-  background-color: var(--charcoal-grey);
-  border: 1px solid var(--forest-green);
-}
-
-/* Ritual UI moments - subtle animations */
 @keyframes monk-breathe {
   0%, 100% { opacity: 0.8; }
   50% { opacity: 1; }
@@ -221,12 +301,42 @@ body {
   animation: monk-breathe 4s infinite ease-in-out;
 }
 
-/* Candlelight glow effect */
+/* Glow Effects */
 .monk-glow {
-  box-shadow: 0 0 15px rgba(166, 140, 109, 0.3);
+  box-shadow: 0 0 15px rgba(0, 255, 153, 0.3);
   transition: box-shadow 0.3s ease;
 }
 
 .monk-glow:hover {
-  box-shadow: 0 0 20px rgba(212, 175, 127, 0.5);
+  box-shadow: 0 0 20px rgba(0, 255, 153, 0.5);
 }
+
+/* The MONK Assistant */
+.monk-assistant {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 1rem;
+  background-color: var(--monk-temple-stone);
+  border-top: 1px solid var(--monk-bamboo-jade);
+  border-left: 1px solid var(--monk-bamboo-jade);
+  border-top-left-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--monk-spirit-whisper);
+  font-weight: 500;
+  z-index: 50;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.monk-assistant::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--monk-sacred-teal);
+  box-shadow: 0 0 10px var(--monk-halo-emerald);
+  animation: pulse 2s infinite;
+}
+

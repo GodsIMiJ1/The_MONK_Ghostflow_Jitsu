@@ -27,9 +27,10 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTr
 import { getDocumentsFromStorage, saveDocumentToStorage, deleteDocumentFromStorage, Document } from "@/lib/storage";
 import DocumentEditor from '@/components/document-editor';
 import { NavigationBar } from "@/components/NavigationBar";
+import { Plus, Save, FolderOpen, Download } from 'lucide-react';
 
-const APP_VERSION = "v1.0";
-const APP_NAME = "GodsIMiJ Empire";
+const APP_VERSION = "v3.1";
+const APP_NAME = "The MONK";
 
 function generateId(): string {
   return Math.random().toString(36).substring(2, 15);
@@ -43,6 +44,8 @@ export default function Home() {
   const [hasMounted, setHasMounted] = useState(false);
   const [isNamingNewDialogOpen, setIsNamingNewDialogOpen] = useState(false);
   const [currentDocumentId, setCurrentDocumentId] = useState<string | null>(null);
+  const [isNewDocDialogOpen, setIsNewDocDialogOpen] = useState(false);
+  const [documentName, setDocumentName] = useState('');
 
   useEffect(() => {
     setHasMounted(true);
@@ -102,17 +105,8 @@ export default function Home() {
   }, [hasMounted]);
 
   const handleNewDocument = () => {
-    setDocumentContent("");
-    if (typeof window !== "undefined") {
-      localStorage.removeItem("currentDocumentId");
-      setCurrentDocumentId(null);
-    }
-    setNewDocumentName("");
-    setIsNamingNewDialogOpen(true);
-    toast({
-      title: "New Document",
-      description: "Editor cleared.",
-    });
+    setIsNewDocDialogOpen(true);
+    setDocumentContent('');
   };
 
   const handleLoadDocument = async (documentId: string) => {
@@ -273,10 +267,10 @@ export default function Home() {
         onLoad={() => setIsLoadDialogOpen(true)}
       />
       
-      <main className="flex-1 flex">
+      <main className="flex-1 flex overflow-hidden">
         <SidebarProvider>
-          {/* Sidebar */}
-          <Sidebar className="w-64 border-r border-monk-forest">
+          {/* Documents Sidebar */}
+          <Sidebar className="w-64 border-r border-monk-forest rounded-tr-2xl">
             <SidebarHeader className="p-4">
               <h2 className="text-xl font-semibold text-monk-gold">Documents</h2>
             </SidebarHeader>
@@ -284,15 +278,16 @@ export default function Home() {
               <div className="space-y-2">
                 <Button 
                   onClick={handleNewDocument}
-                  className="w-full bg-monk-forest hover:bg-monk-gold text-monk-ash"
+                  className="w-full bg-monk-forest hover:bg-monk-gold text-monk-ash rounded-xl"
                 >
+                  <Plus className="w-5 h-5 mr-2" />
                   New Document
                 </Button>
                 {documents.map((doc) => (
                   <Button
                     key={doc.id}
                     variant="ghost"
-                    className={`w-full justify-start ${
+                    className={`w-full justify-start rounded-xl ${
                       currentDocumentId === doc.id ? 'bg-monk-forest text-monk-ash' : 'text-monk-moss hover:text-monk-gold'
                     }`}
                     onClick={() => handleLoadDocument(doc.id)}
@@ -304,46 +299,35 @@ export default function Home() {
             </SidebarContent>
           </Sidebar>
 
-          {/* Main Content */}
-          <div className="flex-1 flex flex-col">
-            <div className="flex-1 p-4">
-              <DocumentEditor
-                initialContent={documentContent}
-                onContentChange={(content: string) => setDocumentContent(content)}
-                onSave={handleSaveDocument}
-                className="w-full h-full min-h-[500px] bg-monk-charcoal text-monk-ash border border-monk-forest rounded-lg p-4 focus:ring-2 focus:ring-monk-gold outline-none"
-              />
-            </div>
+          {/* Main Editor Area */}
+          <div className="flex-1 flex flex-col p-4">
+            <DocumentEditor
+              initialContent={documentContent}
+              onContentChange={(content: string) => setDocumentContent(content)}
+              onSave={handleSaveDocument}
+              className="w-full h-full min-h-[500px] bg-monk-charcoal text-monk-ash border border-monk-forest rounded-2xl p-6 focus:ring-2 focus:ring-monk-gold outline-none"
+            />
           </div>
 
-          {/* AI Chat Window */}
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button 
-                className="fixed bottom-4 right-4 bg-monk-forest hover:bg-monk-gold text-monk-ash"
-              >
-                AI Assistant
-              </Button>
-            </SheetTrigger>
-            <SheetContent className="w-[400px] bg-monk-charcoal border-l border-monk-forest">
-              <SheetHeader>
-                <SheetTitle className="text-monk-gold">AI Assistant</SheetTitle>
-                <SheetDescription className="text-monk-moss">
-                  Get help with your documents
-                </SheetDescription>
-              </SheetHeader>
+          {/* The MONK Sidebar */}
+          <div className="w-96 border-l border-monk-forest bg-monk-charcoal rounded-tl-2xl">
+            <div className="p-6 border-b border-monk-forest">
+              <h2 className="text-2xl font-bold text-monk-sacred-teal">The MONK</h2>
+              <p className="text-monk-spirit-whisper mt-2">Your AI Writing Assistant</p>
+            </div>
+            <div className="h-[calc(100vh-180px)] p-4">
               <AIChatWindow 
                 documentContent={documentContent}
                 onDocumentUpdate={setDocumentContent}
               />
-            </SheetContent>
-          </Sheet>
+            </div>
+          </div>
         </SidebarProvider>
       </main>
 
       {/* Dialogs */}
       <Dialog open={isNamingNewDialogOpen} onOpenChange={setIsNamingNewDialogOpen}>
-        <DialogContent className="bg-monk-charcoal border border-monk-forest">
+        <DialogContent className="bg-monk-charcoal border border-monk-forest rounded-2xl">
           <DialogHeader>
             <DialogTitle className="text-monk-gold">Name Your Document</DialogTitle>
             <DialogDescription className="text-monk-moss">
@@ -359,14 +343,14 @@ export default function Home() {
                 id="name"
                 value={newDocumentName}
                 onChange={(e) => setNewDocumentName(e.target.value)}
-                className="bg-monk-charcoal border-monk-forest text-monk-ash"
+                className="bg-monk-charcoal border-monk-forest text-monk-ash rounded-xl"
               />
             </div>
           </div>
           <DialogFooter>
             <Button
               onClick={handleSaveDocument}
-              className="bg-monk-forest hover:bg-monk-gold text-monk-ash"
+              className="bg-monk-forest hover:bg-monk-gold text-monk-ash rounded-xl"
             >
               Save Document
             </Button>
@@ -376,7 +360,7 @@ export default function Home() {
 
       {/* Load Document Dialog */}
       <Dialog open={isLoadDialogOpen} onOpenChange={setIsLoadDialogOpen}>
-        <DialogContent className="bg-monk-charcoal border border-monk-forest">
+        <DialogContent className="bg-monk-charcoal border border-monk-forest rounded-2xl">
           <DialogHeader>
             <DialogTitle className="text-monk-gold">Load Document</DialogTitle>
             <DialogDescription className="text-monk-moss">
@@ -388,12 +372,43 @@ export default function Home() {
               <Button
                 key={doc.id}
                 variant="ghost"
-                className={`w-full justify-start text-monk-moss hover:text-monk-gold`}
+                className="w-full justify-start text-monk-moss hover:text-monk-gold rounded-xl"
                 onClick={() => handleLoadDocument(doc.id)}
               >
                 {doc.name}
               </Button>
             ))}
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* New Document Dialog */}
+      <Dialog open={isNewDocDialogOpen} onOpenChange={setIsNewDocDialogOpen}>
+        <DialogContent className="bg-monk-scroll-parchment/90 backdrop-blur-md p-6 rounded-2xl border-2 border-monk-sacred-teal shadow-2xl w-full max-w-md">
+          <h2 className="text-2xl font-bold text-monk-zen-black mb-4">New Document</h2>
+          <input
+            type="text"
+            value={documentName}
+            onChange={(e) => setDocumentName(e.target.value)}
+            placeholder="Enter document name..."
+            className="w-full p-3 rounded-xl border-2 border-monk-bamboo-jade bg-monk-scroll-parchment/50 focus:border-monk-sacred-teal focus:outline-none mb-4"
+          />
+          <div className="flex justify-end gap-3">
+            <Button
+              onClick={() => setIsNewDocDialogOpen(false)}
+              className="btn-ghost rounded-xl"
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={() => {
+                // Create new document logic
+                setIsNewDocDialogOpen(false);
+              }}
+              className="btn-primary rounded-xl"
+            >
+              Create
+            </Button>
           </div>
         </DialogContent>
       </Dialog>

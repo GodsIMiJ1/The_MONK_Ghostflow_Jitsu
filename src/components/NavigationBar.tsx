@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { ThemeSwitcher } from './ThemeSwitcher';
 import {
   Menubar,
@@ -30,7 +31,24 @@ export function NavigationBar({
     <div className="flex items-center justify-between p-2 border-b bg-background">
       {/* Left section - App info */}
       <div className="flex items-center gap-4">
-        <span className="text-lg font-bold">{appName}</span>
+        <div className="relative w-8 h-8">
+          <Image
+            src="/the_MONK-ICON.png"
+            alt="The MONK Icon"
+            fill
+            className="object-contain"
+            priority
+          />
+        </div>
+        <div className="relative h-12 w-72">
+          <Image
+            src="/The_MONK-name_logo.png"
+            alt="The MONK"
+            fill
+            className="object-contain"
+            priority
+          />
+        </div>
         <span className="text-sm text-muted-foreground">{appVersion}</span>
       </div>
 

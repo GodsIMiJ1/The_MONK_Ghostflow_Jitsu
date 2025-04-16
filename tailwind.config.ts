@@ -1,6 +1,6 @@
 import type { Config } from "tailwindcss";
 
-export default {
+const config: Config = {
     darkMode: ["class"],
     content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -10,66 +10,36 @@ export default {
   theme: {
   	extend: {
   		colors: {
-        // Temple Silence Color Palette
-        monk: {
-          charcoal: '#1B1B1B',    // Background Base
-          forest: '#1C4D3E',      // Primary Accent
-          moss: '#7D9772',        // Subtle Text / Icons
-          ash: '#D8D5C7',         // Soft Highlight / Inverse Text
-          brown: '#A68C6D',       // Highlight + Buttons
-          gold: '#D4AF7F',        // Sacred Action / Hover
-          purple: '#514B56',      // Optional Shadow Layer
-        },
-  			background: 'hsl(var(--background))',
-  			foreground: 'hsl(var(--foreground))',
-  			card: {
-  				DEFAULT: 'hsl(var(--card))',
-  				foreground: 'hsl(var(--card-foreground))'
-  			},
-  			popover: {
-  				DEFAULT: 'hsl(var(--popover))',
-  				foreground: 'hsl(var(--popover-foreground))'
-  			},
-  			primary: {
-  				DEFAULT: 'hsl(var(--primary))',
-  				foreground: 'hsl(var(--primary-foreground))'
-  			},
-  			secondary: {
-  				DEFAULT: 'hsl(var(--secondary))',
-  				foreground: 'hsl(var(--secondary-foreground))'
-  			},
-  			muted: {
-  				DEFAULT: 'hsl(var(--muted))',
-  				foreground: 'hsl(var(--muted-foreground))'
-  			},
-  			accent: {
-  				DEFAULT: 'hsl(var(--accent))',
-  				foreground: 'hsl(var(--accent-foreground))'
-  			},
-  			destructive: {
-  				DEFAULT: 'hsl(var(--destructive))',
-  				foreground: 'hsl(var(--destructive-foreground))'
-  			},
-  			border: 'hsl(var(--border))',
-  			input: 'hsl(var(--input))',
-  			ring: 'hsl(var(--ring))',
-  			chart: {
-  				'1': 'hsl(var(--chart-1))',
-  				'2': 'hsl(var(--chart-2))',
-  				'3': 'hsl(var(--chart-3))',
-  				'4': 'hsl(var(--chart-4))',
-  				'5': 'hsl(var(--chart-5))'
-  			},
-  			sidebar: {
-  				DEFAULT: 'hsl(var(--sidebar-background))',
-  				foreground: 'hsl(var(--sidebar-foreground))',
-  				primary: 'hsl(var(--sidebar-primary))',
-  				'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-  				accent: 'hsl(var(--sidebar-accent))',
-  				'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-  				border: 'hsl(var(--sidebar-border))',
-  				ring: 'hsl(var(--sidebar-ring))'
-  			}
+        // Base Theme Colors
+        'monk-zen': '#0F0F0F',      // Zen Black - Deep matte black
+        'monk-jade': '#1D5C49',     // Bamboo Jade - Muted forest green
+        'monk-saffron': '#D89C5E',  // Saffron Robe - Warm orange
+        'monk-emerald': '#00FF99',  // Halo Emerald - Neon spiritual glow
+        'monk-stone': '#1B1F23',    // Temple Stone - Subtle slate
+        'monk-parchment': '#E3D6B5', // Scroll Parchment - Light sand
+        'monk-spirit': '#8EFFD7',    // Spirit Whisper - AI text
+        'monk-teal': '#2EC8A6',      // Sacred Teal - Call to action
+        
+        // Semantic colors (using CSS variables)
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
+        card: 'hsl(var(--card))',
+        'card-foreground': 'hsl(var(--card-foreground))',
+        popover: 'hsl(var(--popover))',
+        'popover-foreground': 'hsl(var(--popover-foreground))',
+        primary: 'hsl(var(--primary))',
+        'primary-foreground': 'hsl(var(--primary-foreground))',
+        secondary: 'hsl(var(--secondary))',
+        'secondary-foreground': 'hsl(var(--secondary-foreground))',
+        muted: 'hsl(var(--muted))',
+        'muted-foreground': 'hsl(var(--muted-foreground))',
+        accent: 'hsl(var(--accent))',
+        'accent-foreground': 'hsl(var(--accent-foreground))',
+        destructive: 'hsl(var(--destructive))',
+        'destructive-foreground': 'hsl(var(--destructive-foreground))',
+        border: 'hsl(var(--border))',
+        input: 'hsl(var(--input))',
+        ring: 'hsl(var(--ring))',
   		},
   		borderRadius: {
   			lg: 'var(--radius)',
@@ -92,13 +62,20 @@ export default {
   				to: {
   					height: '0'
   				}
-  			}
+  			},
+  			'monk-pulse': {
+  				'0%, 100%': { opacity: '0.2' },
+  				'50%': { opacity: '0.8' },
+  			},
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
-  			'accordion-up': 'accordion-up 0.2s ease-out'
+  			'accordion-up': 'accordion-up 0.2s ease-out',
+  			'monk-pulse': 'monk-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
   		}
   	}
   },
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;
+
+export default config;

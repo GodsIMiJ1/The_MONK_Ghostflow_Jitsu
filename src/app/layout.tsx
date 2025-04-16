@@ -16,11 +16,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'GodsIMiJ Empire',
-  description: 'The GodsIMiJ Empire Knowledge Core',
+  title: 'The MONK',
+  description: 'A temple for those who seek to code, write, or think with intention.',
   icons: {
-    icon: ['/favicon.ico', '/monk-logo.svg'],
-    apple: '/monk-logo.png',
+    icon: ['/the_MONK-ICON.png'],
+    apple: '/the_MONK-APP_ICON.png',
+    shortcut: '/the_MONK-ICON.png',
   },
 };
 
@@ -32,8 +33,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/monk-logo.svg" type="image/svg+xml" />
-        <link rel="alternate icon" href="/favicon.ico" />
+        <link rel="icon" href="/the_MONK-ICON.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/the_MONK-APP_ICON.png" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ThemeProvider>

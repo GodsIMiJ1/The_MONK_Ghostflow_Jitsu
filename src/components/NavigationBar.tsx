@@ -80,8 +80,17 @@ export function NavigationBar({
         </MenubarMenu>
       </Menubar>
 
-      {/* Right section - Theme switcher and mobile menu */}
-      <div className="flex items-center gap-2">
+      {/* Right section - Sacred Trinity image, Theme switcher and mobile menu */}
+      <div className="flex items-center gap-4">
+        <div className="relative w-16 h-16">
+          <Image
+            src="/sacred_trinity.png"
+            alt="Sacred Trinity"
+            fill
+            className="object-contain"
+            priority
+          />
+        </div>
         <ThemeSwitcher />
 
         {/* Mobile menu */}

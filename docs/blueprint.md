@@ -1,49 +1,27 @@
-# **App Name**: MiniCodex
-
-## Core Features:
-
-- New Document: Create a new document. Clear the editor and localStorage.
-- Load Document: Load an existing document from localStorage.
-- Save Document: Save the current document to localStorage.
-- Export Document: Export the current document as a .md file.
-- Document Editor: Display the document editor with a text area for editing the document.
-
-## Style Guidelines:
-
-- Background color: Black (#000000) for a minimalist look.
-- Text color: Light gray (#D3D3D3) for readability against the black background.
-- Accent color: Teal (#008080) for buttons and interactive elements.
-- Simple, monospaced font for the text editor.
-- Minimalist layout with a text editor filling most of the screen.
-
-## Original User Request:
-Build me a simple Codex-style document editor (front + backend or all-in-one). It should:
-
-Support writing and editing plain text documents.
-
-Allow importing and exporting Markdown (.md) files.
-
-Include buttons for New, Load, and Save.
-
-Store documents locally in browser (localStorage) for now.
-
-When clicking Load, display a list of saved docs to choose from.
-
-When clicking Export, download the content as a .md file.
-
-Keep the UI minimal but readable – black background, white or light gray text, simple font.
-
-Bonus if you can:
-
-Wrap it all into a single HTML file (JS inline ok).
-
-Name the app: MiniCodex.
-
-Include simple version tracking (v1.0 in footer).
-
-Output: Provide the full code I can run in a browser (HTML/CSS/JS combined).
-
 # Technical Blueprint
+
+**The MONK - Temple Dojo Edition**
+**GodsIMiJ AI Solutions © 2025**
+[www.godsimij-ai-solutions.com](https://www.godsimij-ai-solutions.com)
+[james@godsimij-ai-solutions.com](mailto:james@godsimij-ai-solutions.com)
+
+## Core Features
+
+- Dual-mode interface with TabSwitcher
+- SylvieTerminal powered by GPT-4o
+- ScrollEditor for markdown content
+- MonkChat AI assistant
+- Document management with local storage
+- File operations (new, load, save, save as)
+- Minimalist, focused UI design
+
+## Style Guidelines
+
+- Dark theme with sacred color palette
+- Monk-themed color variables
+- Minimalist interface with focused content areas
+- Monospaced font for code and terminal
+- Responsive layout with split view
 
 ## System Architecture
 
@@ -135,7 +113,7 @@ sequenceDiagram
     Storage-->>API: Confirm Save
     API-->>UI: Update Status
     UI-->>User: Show Confirmation
-    
+
     User->>UI: Request AI Assistance
     UI->>API: Send Request
     API->>AI: Process Request
@@ -246,16 +224,16 @@ interface WebSocketEvents {
   'document:create': (document: Document) => void;
   'document:update': (document: Document) => void;
   'document:delete': (id: string) => void;
-  
+
   // AI Events
   'ai:response': (response: AIResponse) => void;
   'ai:stream': (chunk: string) => void;
   'ai:error': (error: Error) => void;
-  
+
   // Theme Events
   'theme:change': (theme: Theme) => void;
   'theme:update': (theme: Theme) => void;
-  
+
   // User Events
   'user:activity': (activity: Activity) => void;
   'user:preferences': (preferences: Preferences) => void;
@@ -275,20 +253,20 @@ interface LocalStorage {
     [id: string]: Template;
   };
   history: HistoryEntry[];
-  
+
   // Theme Storage
   themes: {
     [id: string]: Theme;
   };
   preferences: ThemePreferences;
-  
+
   // Settings Storage
   settings: {
     user: UserPreferences;
     system: SystemSettings;
     integrations: IntegrationSettings;
   };
-  
+
   // AI Storage
   ai: {
     context: Context;
@@ -305,12 +283,12 @@ interface CloudStorage {
   documents: Document[];
   templates: Template[];
   history: HistoryEntry[];
-  
+
   // User Data
   profiles: UserProfile[];
   preferences: UserPreferences[];
   activity: ActivityLog[];
-  
+
   // System Data
   settings: SystemSettings[];
   integrations: IntegrationSettings[];
@@ -327,7 +305,7 @@ interface Authentication {
   token: string;
   expires: number;
   permissions: string[];
-  
+
   // User Session
   session: {
     id: string;
@@ -335,7 +313,7 @@ interface Authentication {
     lastActive: number;
     devices: Device[];
   };
-  
+
   // Security Policies
   policies: {
     password: PasswordPolicy;
@@ -356,7 +334,7 @@ interface Authorization {
       actions: string[];
     };
   };
-  
+
   // Resource Permissions
   resources: {
     [resource: string]: {
@@ -364,7 +342,7 @@ interface Authorization {
       conditions: Condition[];
     };
   };
-  
+
   // Access Policies
   policies: {
     [policy: string]: {
@@ -388,7 +366,7 @@ interface Cache {
       ttl: number;
     };
   };
-  
+
   // Theme Cache
   themes: {
     [id: string]: {
@@ -397,7 +375,7 @@ interface Cache {
       ttl: number;
     };
   };
-  
+
   // AI Cache
   ai: {
     [prompt: string]: {
@@ -419,7 +397,7 @@ interface Metrics {
     timeToInteractive: number;
     totalBlockingTime: number;
   };
-  
+
   // Runtime Metrics
   runtime: {
     memoryUsage: number;
@@ -427,7 +405,7 @@ interface Metrics {
     networkUsage: number;
     renderTime: number;
   };
-  
+
   // User Metrics
   user: {
     interactionTime: number;
@@ -450,7 +428,7 @@ interface Errors {
     saveFailed: Error;
     loadFailed: Error;
   };
-  
+
   // AI Errors
   ai: {
     modelError: Error;
@@ -458,7 +436,7 @@ interface Errors {
     responseError: Error;
     timeoutError: Error;
   };
-  
+
   // Theme Errors
   theme: {
     invalidTheme: Error;
@@ -466,7 +444,7 @@ interface Errors {
     saveFailed: Error;
     loadFailed: Error;
   };
-  
+
   // System Errors
   system: {
     storageError: Error;
@@ -486,14 +464,14 @@ interface ErrorHandling {
     fallback: (error: Error) => Promise<void>;
     notify: (error: Error) => void;
   };
-  
+
   // Error Logging
   logging: {
     error: (error: Error) => void;
     warning: (error: Error) => void;
     info: (error: Error) => void;
   };
-  
+
   // Error Reporting
   reporting: {
     track: (error: Error) => void;
@@ -514,14 +492,14 @@ interface Monitoring {
     alerts: Alert[];
     thresholds: Threshold[];
   };
-  
+
   // Error Monitoring
   errors: {
     tracking: ErrorTracking;
     analysis: ErrorAnalysis;
     resolution: ErrorResolution;
   };
-  
+
   // User Monitoring
   users: {
     activity: ActivityTracking;
@@ -541,7 +519,7 @@ interface Logging {
     error: LogEntry[];
     debug: LogEntry[];
   };
-  
+
   // System Logs
   system: {
     performance: LogEntry[];
@@ -549,7 +527,7 @@ interface Logging {
     audit: LogEntry[];
     maintenance: LogEntry[];
   };
-  
+
   // User Logs
   user: {
     activity: LogEntry[];
@@ -559,4 +537,3 @@ interface Logging {
   };
 }
 ```
-  

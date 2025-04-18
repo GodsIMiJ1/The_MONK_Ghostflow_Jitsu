@@ -1,5 +1,10 @@
 # The MONK User Manual
 
+**The MONK - Temple Dojo Edition**
+**GodsIMiJ AI Solutions © 2025**
+[www.godsimij-ai-solutions.com](https://www.godsimij-ai-solutions.com)
+[james@godsimij-ai-solutions.com](mailto:james@godsimij-ai-solutions.com)
+
 ## Introduction
 Welcome to The MONK, a sacred text editor designed for presence and focus. This manual will guide you through the features and capabilities of this unique writing environment.
 
@@ -185,4 +190,4 @@ Welcome to The MONK, a sacred text editor designed for presence and focus. This 
 - Light theme
 - Cloud storage
 - Advanced AI
-- Plugin system 
+- Plugin system

@@ -1,5 +1,10 @@
 # AI Features Guide
 
+**The MONK - Temple Dojo Edition**
+**GodsIMiJ AI Solutions © 2025**
+[www.godsimij-ai-solutions.com](https://www.godsimij-ai-solutions.com)
+[james@godsimij-ai-solutions.com](mailto:james@godsimij-ai-solutions.com)
+
 This guide explains THE MONK's AI capabilities and how to use them effectively.
 
 ## Overview
@@ -204,4 +209,4 @@ Planned AI improvements:
 1. Don't share sensitive data
 2. Use local models when possible
 3. Review privacy settings
-4. Clear history regularly 
+4. Clear history regularly

@@ -1,5 +1,12 @@
-# The MONK – v4.2.0 – Ghost Reforged
+# The MONK – v4.2.1 – Temple Dojo Edition
 **"Speak, and the Scroll shall become."**
+
+---
+
+**The MONK - Temple Dojo Edition**
+**GodsIMiJ AI Solutions © 2025**
+[www.godsimij-ai-solutions.com](https://www.godsimij-ai-solutions.com)
+[james@godsimij-ai-solutions.com](mailto:james@godsimij-ai-solutions.com)
 
 ---
 

@@ -1,5 +1,10 @@
 # Sylvie Terminal API
 
+**The MONK - Temple Dojo Edition**
+**GodsIMiJ AI Solutions © 2025**
+[www.godsimij-ai-solutions.com](https://www.godsimij-ai-solutions.com)
+[james@godsimij-ai-solutions.com](mailto:james@godsimij-ai-solutions.com)
+
 Sylvie is the finetuned patch priestess of the GodsIMiJ Empire. She responds to code prompts with a filename and code block, providing concise and sacred guidance.
 
 ## API Endpoint
@@ -50,8 +55,8 @@ const response = await fetch('/api/sylvie-terminal', {
   headers: {
     'Content-Type': 'application/json',
   },
-  body: JSON.stringify({ 
-    prompt: 'Create a React component that displays a counter with increment and decrement buttons' 
+  body: JSON.stringify({
+    prompt: 'Create a React component that displays a counter with increment and decrement buttons'
   }),
 });
 

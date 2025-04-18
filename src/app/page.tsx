@@ -327,6 +327,15 @@ export default function Home() {
         </SidebarProvider>
       </main>
 
+      {/* Footer */}
+      <footer className="p-3 text-center text-xs text-monk-spirit-whisper border-t border-monk-forest">
+        <p>The MONK - Temple Dojo Edition | GodsIMiJ AI Solutions © 2025</p>
+        <p>
+          <a href="https://www.godsimij-ai-solutions.com" target="_blank" rel="noopener noreferrer" className="hover:text-monk-sacred-teal">www.godsimij-ai-solutions.com</a> |
+          <a href="mailto:james@godsimij-ai-solutions.com" className="hover:text-monk-sacred-teal">james@godsimij-ai-solutions.com</a>
+        </p>
+      </footer>
+
       {/* Dialogs */}
       <Dialog open={isNamingNewDialogOpen} onOpenChange={setIsNamingNewDialogOpen}>
         <DialogContent className="bg-monk-charcoal border border-monk-forest rounded-2xl">

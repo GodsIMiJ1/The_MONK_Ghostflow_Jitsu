@@ -1,5 +1,10 @@
 # AI Implementation in The MONK
 
+**The MONK - Temple Dojo Edition**
+**GodsIMiJ AI Solutions © 2025**
+[www.godsimij-ai-solutions.com](https://www.godsimij-ai-solutions.com)
+[james@godsimij-ai-solutions.com](mailto:james@godsimij-ai-solutions.com)
+
 ## Overview
 The MONK integrates AI capabilities through LM Studio, providing a local, privacy-focused AI experience. The implementation focuses on document-aware interactions and context-sensitive responses.
 
@@ -14,7 +19,7 @@ The MONK integrates AI capabilities through LM Studio, providing a local, privac
 
 ### 2. AI Interaction Types
 ```typescript
-type MessageType = 
+type MessageType =
   | 'chat'      // General conversation
   | 'edit'      // Document editing
   | 'suggestion'// Content suggestions
@@ -93,10 +98,10 @@ interface Message {
 const sendMessage = async (type: MessageType = 'chat') => {
   // Construct prompt based on type
   const prompt = buildPrompt(type, documentContent, newMessage);
-  
+
   // Generate response
   const response = await generateResponse(prompt);
-  
+
   // Handle response based on type
   handleResponse(type, response);
 };
@@ -171,4 +176,4 @@ const handleResponse = (type: MessageType, response: string) => {
 - Image analysis
 - Audio processing
 - Multi-modal support
-- Plugin system 
+- Plugin system

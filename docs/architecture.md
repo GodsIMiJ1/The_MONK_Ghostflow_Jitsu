@@ -1,5 +1,10 @@
 # System Architecture
 
+**The MONK - Temple Dojo Edition**
+**GodsIMiJ AI Solutions © 2025**
+[www.godsimij-ai-solutions.com](https://www.godsimij-ai-solutions.com)
+[james@godsimij-ai-solutions.com](mailto:james@godsimij-ai-solutions.com)
+
 ## Overview
 
 The MONK v4.2.0 is a dual-mode spiritual development tool built with Next.js 14, featuring a Codex-powered terminal, markdown scroll editor, and AI-assisted interface. The architecture follows a modular, scalable design pattern with clear separation of concerns.

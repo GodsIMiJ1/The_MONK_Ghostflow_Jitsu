@@ -1,5 +1,10 @@
 # THE MONK Documentation
 
+**The MONK - Temple Dojo Edition**
+**GodsIMiJ AI Solutions © 2025**
+[www.godsimij-ai-solutions.com](https://www.godsimij-ai-solutions.com)
+[james@godsimij-ai-solutions.com](mailto:james@godsimij-ai-solutions.com)
+
 Welcome to THE MONK documentation suite. This collection of documents provides comprehensive information about the project, its features, and how to use it effectively.
 
 ## Documentation Index
@@ -39,4 +44,4 @@ For support, please:
 1. Check the documentation first
 2. Search existing issues
 3. Create a new issue if needed
-4. Join our community discussions 
+4. Join our community discussions

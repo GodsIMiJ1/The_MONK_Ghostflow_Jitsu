@@ -24,13 +24,14 @@ import {
 } from "@/components/ui/sidebar";
 import AIChatWindow from "@/components/ai-chat-window";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import TabSwitcher from "@/components/TabSwitcher";
 import { getDocumentsFromStorage, saveDocumentToStorage, deleteDocumentFromStorage, Document } from "@/lib/storage";
 import DocumentEditor from '@/components/document-editor';
 import { NavigationBar } from "@/components/NavigationBar";
 import { Plus, Save, FolderOpen, Download } from 'lucide-react';
 
-const APP_VERSION = "v3.1";
-const APP_NAME = "The MONK";
+const APP_VERSION = "v4.2.1 – Temple Dojo Edition";
+const APP_NAME = "THE MONK";
 
 function generateId(): string {
   return Math.random().toString(36).substring(2, 15);
@@ -154,39 +155,72 @@ export default function Home() {
         );
         setDocuments(updatedDocuments);
 
+        // Also save to local file system
+        handleExportDocument();
+
         toast({
           title: "Document Saved",
-          description: "Current document updated.",
+          description: "Current document updated and exported to file.",
         });
       } else {
-        // Create new document
-        if (!newDocumentName) {
-          alert("Please enter a name for the new document.");
-          return;
-        }
-        const newDocument: Document = {
-          id: generateId(),
-          name: newDocumentName,
-          content: documentContent,
-        };
-
-        // Save to localStorage
-        saveDocumentToStorage(newDocument);
-
-        // Update state
-        const updatedDocuments = [...documents, newDocument];
-        setDocuments(updatedDocuments);
-
-        if (typeof window !== "undefined") {
-          localStorage.setItem("currentDocumentId", newDocument.id);
-          setCurrentDocumentId(newDocument.id);
-        }
-
-        toast({
-          title: "New Document Saved",
-          description: `Saved as: ${newDocumentName}`,
-        });
+        // If no current document, prompt for name
+        setIsNamingNewDialogOpen(true);
       }
+    } catch (error) {
+      console.error("Error saving document:", error);
+      toast({
+        title: "Error",
+        description: "Failed to save the document.",
+      });
+    }
+  };
+
+  const handleSaveAsDocument = () => {
+    // Always show the naming dialog for Save As
+    setIsNamingNewDialogOpen(true);
+  };
+
+  const handleSaveNewDocument = () => {
+    try {
+      if (!newDocumentName) {
+        alert("Please enter a name for the new document.");
+        return;
+      }
+
+      const newDocument: Document = {
+        id: generateId(),
+        name: newDocumentName,
+        content: documentContent,
+      };
+
+      // Save to localStorage
+      saveDocumentToStorage(newDocument);
+
+      // Update state
+      const updatedDocuments = [...documents, newDocument];
+      setDocuments(updatedDocuments);
+
+      if (typeof window !== "undefined") {
+        localStorage.setItem("currentDocumentId", newDocument.id);
+        setCurrentDocumentId(newDocument.id);
+      }
+
+      // Also save to local file system
+      const blob = new Blob([documentContent], { type: "text/markdown" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `${newDocumentName}.md`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+
+      toast({
+        title: "New Document Saved",
+        description: `Saved as: ${newDocumentName}`,
+      });
+
       setIsNamingNewDialogOpen(false);
     } catch (error) {
       console.error("Error saving document:", error);
@@ -264,62 +298,30 @@ export default function Home() {
         appVersion={APP_VERSION}
         onNew={handleNewDocument}
         onSave={handleSaveDocument}
+        onSaveAs={handleSaveAsDocument}
         onLoad={() => setIsLoadDialogOpen(true)}
       />
-      
+
       <main className="flex-1 flex overflow-hidden">
         <SidebarProvider>
-          {/* Documents Sidebar */}
-          <Sidebar className="w-64 border-r border-monk-forest rounded-tr-2xl">
-            <SidebarHeader className="p-4">
-              <h2 className="text-xl font-semibold text-monk-gold">Documents</h2>
-            </SidebarHeader>
-            <SidebarContent className="p-4">
-              <div className="space-y-2">
-                <Button 
-                  onClick={handleNewDocument}
-                  className="w-full bg-monk-forest hover:bg-monk-gold text-monk-ash rounded-xl"
-                >
-                  <Plus className="w-5 h-5 mr-2" />
-                  New Document
-                </Button>
-                {documents.map((doc) => (
-                  <Button
-                    key={doc.id}
-                    variant="ghost"
-                    className={`w-full justify-start rounded-xl ${
-                      currentDocumentId === doc.id ? 'bg-monk-forest text-monk-ash' : 'text-monk-moss hover:text-monk-gold'
-                    }`}
-                    onClick={() => handleLoadDocument(doc.id)}
-                  >
-                    {doc.name}
-                  </Button>
-                ))}
-              </div>
-            </SidebarContent>
-          </Sidebar>
-
-          {/* Main Editor Area */}
-          <div className="flex-1 flex flex-col p-4">
-            <DocumentEditor
-              initialContent={documentContent}
-              onContentChange={(content: string) => setDocumentContent(content)}
-              onSave={handleSaveDocument}
-              className="w-full h-full min-h-[500px] bg-monk-charcoal text-monk-ash border border-monk-forest rounded-2xl p-6 focus:ring-2 focus:ring-monk-gold outline-none"
-            />
-          </div>
-
-          {/* The MONK Sidebar */}
-          <div className="w-96 border-l border-monk-forest bg-monk-charcoal rounded-tl-2xl">
-            <div className="p-6 border-b border-monk-forest">
-              <h2 className="text-2xl font-bold text-monk-sacred-teal">The MONK</h2>
-              <p className="text-monk-spirit-whisper mt-2">Your AI Writing Assistant</p>
+          {/* Main Content Area */}
+          <div className="flex h-full w-full flex-1">
+            {/* Left Side - TabSwitcher (Terminal/Editor) */}
+            <div className="w-1/2 border-r border-gray-700">
+              <TabSwitcher />
             </div>
-            <div className="h-[calc(100vh-180px)] p-4">
-              <AIChatWindow 
-                documentContent={documentContent}
-                onDocumentUpdate={setDocumentContent}
-              />
+            {/* Right Side - Monk Chat */}
+            <div className="w-1/2 bg-monk-charcoal rounded-tl-2xl">
+              <div className="p-6 border-b border-monk-forest">
+                <h2 className="text-2xl font-bold text-monk-sacred-teal">The MONK</h2>
+                <p className="text-monk-spirit-whisper mt-2">where Left Hand Strikes. & the Right Hand Guides.</p>
+              </div>
+              <div className="h-[calc(100vh-180px)] p-4">
+                <AIChatWindow
+                  documentContent={documentContent}
+                  onDocumentUpdate={setDocumentContent}
+                />
+              </div>
             </div>
           </div>
         </SidebarProvider>
@@ -349,7 +351,7 @@ export default function Home() {
           </div>
           <DialogFooter>
             <Button
-              onClick={handleSaveDocument}
+              onClick={handleSaveNewDocument}
               className="bg-monk-forest hover:bg-monk-gold text-monk-ash rounded-xl"
             >
               Save Document

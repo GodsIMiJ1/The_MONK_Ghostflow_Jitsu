@@ -18,6 +18,11 @@
   - [x] Template manager
   - [x] Settings panel
 
+### v4.2.x → v4.3 Goal
+- Refactor GhostflowTerminal to support real Codex responses
+- Enable scroll saving in ScrollEditor
+- Introduce theme toggle (light/dark)
+
 ## Phase 2: Enhancement (Next 2 Months)
 - [ ] Advanced Document Features
   - [ ] Real-time collaboration
@@ -191,4 +196,4 @@
   - [ ] Training programs
   - [ ] Custom development
   - [ ] Integration support
-  - [ ] Security consulting 
+  - [ ] Security consulting

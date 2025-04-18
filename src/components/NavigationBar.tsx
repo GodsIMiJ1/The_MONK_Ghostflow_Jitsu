@@ -15,6 +15,7 @@ import { Button } from './ui/button';
 interface NavigationBarProps {
   onNew: () => void;
   onSave: () => void;
+  onSaveAs: () => void;
   onLoad: () => void;
   appName: string;
   appVersion: string;
@@ -23,6 +24,7 @@ interface NavigationBarProps {
 export function NavigationBar({
   onNew,
   onSave,
+  onSaveAs,
   onLoad,
   appName,
   appVersion
@@ -58,16 +60,21 @@ export function NavigationBar({
           <MenubarTrigger>File</MenubarTrigger>
           <MenubarContent>
             <MenubarItem onClick={onNew}>
-              New Document
+              New
               <MenubarShortcut>⌘N</MenubarShortcut>
-            </MenubarItem>
-            <MenubarItem onClick={onSave}>
-              Save
-              <MenubarShortcut>⌘S</MenubarShortcut>
             </MenubarItem>
             <MenubarItem onClick={onLoad}>
               Load
               <MenubarShortcut>⌘O</MenubarShortcut>
+            </MenubarItem>
+            <MenubarSeparator />
+            <MenubarItem onClick={onSave}>
+              Save
+              <MenubarShortcut>⌘S</MenubarShortcut>
+            </MenubarItem>
+            <MenubarItem onClick={onSaveAs}>
+              Save As
+              <MenubarShortcut>⌘⇧S</MenubarShortcut>
             </MenubarItem>
           </MenubarContent>
         </MenubarMenu>
@@ -76,20 +83,23 @@ export function NavigationBar({
       {/* Right section - Theme switcher and mobile menu */}
       <div className="flex items-center gap-2">
         <ThemeSwitcher />
-        
+
         {/* Mobile menu */}
         <div className="md:hidden">
           <Button variant="ghost" size="icon" onClick={onNew}>
             New
           </Button>
+          <Button variant="ghost" size="icon" onClick={onLoad}>
+            Load
+          </Button>
           <Button variant="ghost" size="icon" onClick={onSave}>
             Save
           </Button>
-          <Button variant="ghost" size="icon" onClick={onLoad}>
-            Load
+          <Button variant="ghost" size="icon" onClick={onSaveAs}>
+            Save As
           </Button>
         </div>
       </div>
     </div>
   );
-} 
+}

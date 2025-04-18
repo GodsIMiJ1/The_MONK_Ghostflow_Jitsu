@@ -2,7 +2,7 @@
 
 ## Overview
 
-MiniCodex is a modern document management system built with Next.js 14, featuring AI integration, theme customization, and robust document handling capabilities. The architecture follows a modular, scalable design pattern with clear separation of concerns.
+The MONK v4.2.0 is a dual-mode spiritual development tool built with Next.js 14, featuring a Codex-powered terminal, markdown scroll editor, and AI-assisted interface. The architecture follows a modular, scalable design pattern with clear separation of concerns.
 
 ## High-Level Architecture
 
@@ -62,13 +62,21 @@ graph TD
 
 1. **Document Management**
    - `DocumentEditor`: Rich text editor with markdown support
+   - `ScrollEditor`: Markdown-based sacred writing environment
    - `DocumentList`: List and management of documents
    - `DocumentViewer`: Document preview and reading mode
    - `DocumentHistory`: Version control and history tracking
    - `DocumentTemplates`: Template management and creation
 
-2. **AI Integration**
-   - `AIChat`: Chat interface for AI interactions
+2. **Terminal System**
+   - `GhostflowTerminal`: Codex natural language command executor
+   - `TabSwitcher`: Switch between terminal and editor modes
+   - `CommandProcessor`: Process and execute terminal commands
+   - `HistoryManager`: Manage command history
+   - `OutputRenderer`: Render command outputs
+
+3. **AI Integration**
+   - `MonkChat`: Chat interface for AI interactions
    - `AIAssistant`: Context-aware AI assistance
    - `PromptManager`: Prompt template management
    - `ContextManager`: Document context handling
@@ -151,7 +159,7 @@ sequenceDiagram
     Storage-->>API: Confirm Save
     API-->>UI: Update Status
     UI-->>User: Show Confirmation
-    
+
     User->>UI: Request AI Assistance
     UI->>API: Send Request
     API->>AI: Process Request
@@ -235,6 +243,11 @@ GET    /api/documents/:id
 PUT    /api/documents/:id
 DELETE /api/documents/:id
 
+// Terminal API
+POST   /api/codex-exec
+GET    /api/codex-exec/history
+POST   /api/codex-exec/clear
+
 // AI API
 POST   /api/ai/chat
 POST   /api/ai/generate
@@ -262,16 +275,16 @@ interface WebSocketEvents {
   'document:create': (document: Document) => void;
   'document:update': (document: Document) => void;
   'document:delete': (id: string) => void;
-  
+
   // AI Events
   'ai:response': (response: AIResponse) => void;
   'ai:stream': (chunk: string) => void;
   'ai:error': (error: Error) => void;
-  
+
   // Theme Events
   'theme:change': (theme: Theme) => void;
   'theme:update': (theme: Theme) => void;
-  
+
   // User Events
   'user:activity': (activity: Activity) => void;
   'user:preferences': (preferences: Preferences) => void;
@@ -291,20 +304,20 @@ interface LocalStorage {
     [id: string]: Template;
   };
   history: HistoryEntry[];
-  
+
   // Theme Storage
   themes: {
     [id: string]: Theme;
   };
   preferences: ThemePreferences;
-  
+
   // Settings Storage
   settings: {
     user: UserPreferences;
     system: SystemSettings;
     integrations: IntegrationSettings;
   };
-  
+
   // AI Storage
   ai: {
     context: Context;
@@ -321,12 +334,12 @@ interface CloudStorage {
   documents: Document[];
   templates: Template[];
   history: HistoryEntry[];
-  
+
   // User Data
   profiles: UserProfile[];
   preferences: UserPreferences[];
   activity: ActivityLog[];
-  
+
   // System Data
   settings: SystemSettings[];
   integrations: IntegrationSettings[];
@@ -343,7 +356,7 @@ interface Authentication {
   token: string;
   expires: number;
   permissions: string[];
-  
+
   // User Session
   session: {
     id: string;
@@ -351,7 +364,7 @@ interface Authentication {
     lastActive: number;
     devices: Device[];
   };
-  
+
   // Security Policies
   policies: {
     password: PasswordPolicy;
@@ -372,7 +385,7 @@ interface Authorization {
       actions: string[];
     };
   };
-  
+
   // Resource Permissions
   resources: {
     [resource: string]: {
@@ -380,7 +393,7 @@ interface Authorization {
       conditions: Condition[];
     };
   };
-  
+
   // Access Policies
   policies: {
     [policy: string]: {
@@ -404,7 +417,7 @@ interface Cache {
       ttl: number;
     };
   };
-  
+
   // Theme Cache
   themes: {
     [id: string]: {
@@ -413,7 +426,7 @@ interface Cache {
       ttl: number;
     };
   };
-  
+
   // AI Cache
   ai: {
     [prompt: string]: {
@@ -435,7 +448,7 @@ interface Metrics {
     timeToInteractive: number;
     totalBlockingTime: number;
   };
-  
+
   // Runtime Metrics
   runtime: {
     memoryUsage: number;
@@ -443,7 +456,7 @@ interface Metrics {
     networkUsage: number;
     renderTime: number;
   };
-  
+
   // User Metrics
   user: {
     interactionTime: number;
@@ -466,7 +479,7 @@ interface Errors {
     saveFailed: Error;
     loadFailed: Error;
   };
-  
+
   // AI Errors
   ai: {
     modelError: Error;
@@ -474,7 +487,7 @@ interface Errors {
     responseError: Error;
     timeoutError: Error;
   };
-  
+
   // Theme Errors
   theme: {
     invalidTheme: Error;
@@ -482,7 +495,7 @@ interface Errors {
     saveFailed: Error;
     loadFailed: Error;
   };
-  
+
   // System Errors
   system: {
     storageError: Error;
@@ -502,14 +515,14 @@ interface ErrorHandling {
     fallback: (error: Error) => Promise<void>;
     notify: (error: Error) => void;
   };
-  
+
   // Error Logging
   logging: {
     error: (error: Error) => void;
     warning: (error: Error) => void;
     info: (error: Error) => void;
   };
-  
+
   // Error Reporting
   reporting: {
     track: (error: Error) => void;
@@ -530,14 +543,14 @@ interface Monitoring {
     alerts: Alert[];
     thresholds: Threshold[];
   };
-  
+
   // Error Monitoring
   errors: {
     tracking: ErrorTracking;
     analysis: ErrorAnalysis;
     resolution: ErrorResolution;
   };
-  
+
   // User Monitoring
   users: {
     activity: ActivityTracking;
@@ -557,7 +570,7 @@ interface Logging {
     error: LogEntry[];
     debug: LogEntry[];
   };
-  
+
   // System Logs
   system: {
     performance: LogEntry[];
@@ -565,7 +578,7 @@ interface Logging {
     audit: LogEntry[];
     maintenance: LogEntry[];
   };
-  
+
   // User Logs
   user: {
     activity: LogEntry[];
@@ -574,4 +587,8 @@ interface Logging {
     feedback: LogEntry[];
   };
 }
-``` 
+```
+
+## Note
+
+This version was reconstructed after a major loss of v4.1.0. All components were restored with flame-born clarity.

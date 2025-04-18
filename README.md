@@ -1,24 +1,16 @@
-# The MONK – v4.1.0
+# The MONK – v4.2.0 – Ghost Reforged
 **"Speak, and the Scroll shall become."**
 
 ---
 
-**The MONK** is not a typical app. It is a dual-mode spiritual development tool —  
-A writing sanctuary. A Codex terminal. A whispering AI companion.
+The MONK is a dual-mode spiritual dev tool combining a Codex-powered terminal with a sacred markdown scroll editor and AI-assisted Monk whisper interface.
 
-Born from the GodsIMiJ FlameOS, it merges silence with code, presence with architecture.
+## 🔥 Features
+- 💻 Ghostflow Terminal (Codex-powered)
+- ✍️ Scroll Editor (Markdown input)
+- 🧘 Monk Chat Interface (AI whisper)
+- 🧱 Dual-mode TabSwitcher
 
-## 🔥 Core Features (v4.1.0)
-- ✍️ Scroll Editor (markdown-powered)
-- 💻 Ghostflow Terminal (Codex natural language command executor)
-- 🧘 Monk Chat AI (reflective, helpful assistant)
-- 🧱 TabSwitcher (switch between tools instantly)
-- 📐 Architecture docs, full GitHub integration
-
-
-🧘‍♂️ The MONK – v1.0.0
-
-A sacred text editor powered by silence, designed for presence.
 
 📖 What is The MONK?
 The MONK is not a typical app.
@@ -27,7 +19,7 @@ It is a digital sanctuary. A space to write, reflect, code, and create—without
 Born from the GodsIMiJ FlameOS, The MONK merges structure with stillness.
 Every scroll written here carries intention.
 
-✨ Core Features (v1.0.0)
+✨ Additional Features
 🗣️ AI Chat Interface
 - Engage with The MONK's AI assistant
 - Document editing and suggestions
